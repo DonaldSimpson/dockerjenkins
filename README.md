@@ -7,13 +7,13 @@ https://hub.docker.com/r/donaldsimpson/dockerjenkins/
 I'm using this to test dockerised jenkins swarm nodes
 
 With docker-latest installed and running you can build it like this:
-docker build -t donjenkins .
+docker build -t donaldsimpson/dockerjenkins .
 
 or pull it from docker hub like this:
 docker pull donaldsimpson/dockerjenkins
 
 and run it with these args:
-docker run -d -p 8080:8080 -v /root/dockerbuilds/jenkins/jenkins_home/:/var/jenkins_home:Z donjenkins
+docker run -d -p 8080:8080 -v /root/dockerbuilds/jenkins/jenkins_home/:/var/jenkins_home:Z donaldsimpson/dockerjenkins
  
 where:
  
