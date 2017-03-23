@@ -11,10 +11,9 @@ export JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true"
 export JAVA_OPTS="${JAVA_OPTS} -Djenkins.install.runSetupWizard=false"
 # export JENKINS_UC="http://<SERVER>/update-center.json"
 
-#
-#
-# /usr/bin/mv /tmp/UpdateCenter.xml /var/jenkins_home/hudson.model.UpdateCenter.xml
-
+# IF you need a custom/internal Jenkins Update Centre, replace it here:
+# /usr/bin/mv /tmp/UpdateCenter.xml /var/jenkins_home/hudson.model.UpdateCenter.xml | :
+# but fail quietly if it's already been done (e.g. when restarting the container)
 
 ### Allow the user to specify -- launcher args as first arg to docker run
 if [[ $# -lt 1 ]] || [[ "$1" == "--"* ]]; then
