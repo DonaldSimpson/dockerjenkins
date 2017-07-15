@@ -1,5 +1,6 @@
 # dockerjenkins
 An "offline" Docker image for Jenkins on CentOS/RHEL
+UPDATED to Jenkins version LTS version 2.60.1
 
 This image is available via an automated build on the Docker Hub:
 https://hub.docker.com/r/donaldsimpson/dockerjenkins/
@@ -13,7 +14,7 @@ or pull it from docker hub like this:
 docker pull donaldsimpson/dockerjenkins
 
 and run it with these args:
-docker run -d -p 8080:8080 -v /root/dockerbuilds/jenkins/jenkins_home/:/var/jenkins_home:Z donaldsimpson/dockerjenkins
+docker run -d -p 8080:8080 -v /some/LOCALANDEXISTING/dir/:/var/jenkins_home:Z donaldsimpson/dockerjenkins
  
 where:
  
