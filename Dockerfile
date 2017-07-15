@@ -36,9 +36,9 @@ ENV JENKINS_SLAVE_AGENT_PORT 50000
 
 # COPY FILES OVER
 # - Jenkins WAR
-# 	I'm doing a local/offline install here so assuming the required jenkins.war has been downloaded to the current dir
 # 	wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war
-COPY jenkins.war /usr/share/jenkins/
+RUN (cd /usr/share/jenkins && wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war)
+# COPY jenkins.war /usr/share/jenkins/
 # - Jenkins start script
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 # - Tini Init process
