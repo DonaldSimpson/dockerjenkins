@@ -12,6 +12,7 @@ RUN yum update -y \
 	&& yum install -y java-1.8.0-openjdk-devel \
 	&& yum install -y git \
 	&& yum install -y python \
+	&& yum install -y wget \
 	&& yum install -y which \
 	&& yum clean all
 
@@ -37,8 +38,8 @@ ENV JENKINS_SLAVE_AGENT_PORT 50000
 # COPY FILES OVER
 # - Jenkins WAR
 # 	wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war
-RUN (cd /usr/share/jenkins && wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war)
-# COPY jenkins.war /usr/share/jenkins/
+RUN mkdir /usr/share/jenkins && cd /usr/share/jenkins && wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+
 # - Jenkins start script
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 # - Tini Init process
