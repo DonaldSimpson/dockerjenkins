@@ -24,6 +24,7 @@ RUN yum update -y \
 	&& mkdir /var/jenkins_home \
 	&& mkdir /usr/share/jenkins \
 	&& cd /usr/share/jenkins \
+	&& rm -rf /var/cache/yum \
 	&& wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war
 
 ### EXPOSED PORTS - 8080 for web interface and 5000 for JNLP slave nodes:
@@ -32,10 +33,6 @@ EXPOSE 8080 50000
 ### ENV VARIBALES:
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
-
-# COPY FILES OVER
-# - Jenkins WAR
-# 	wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war OR.... RUN mkdir /usr/share/jenkins && cd /usr/share/jenkins && wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war
 
 # - Jenkins start script
 COPY jenkins.sh /usr/local/bin/jenkins.sh
