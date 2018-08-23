@@ -8,6 +8,10 @@ MAINTAINER Donald Simpson <donaldsimpson@gmail.com>
 ARG CONTAINER_UID=1000
 ARG CONTAINER_GID=1000
 
+# - Jenkins start script & init process
+COPY jenkins.sh /usr/local/bin/jenkins.sh
+COPY tini /bin/
+
 ### Combine yum update with all yum install commands:
 RUN yum update -y \
 	&& yum install -y java-1.8.0-openjdk-devel \
@@ -25,7 +29,9 @@ RUN yum update -y \
 	&& mkdir /usr/share/jenkins \
 	&& cd /usr/share/jenkins \
 	&& rm -rf /var/cache/yum \
-	&& wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+	&& wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war \
+	&& chmod +x /bin/tini \
+	&& chown -R jenkins:jenkins /var/jenkins_home 
 
 ### EXPOSED PORTS - 8080 for web interface and 5000 for JNLP slave nodes:
 EXPOSE 8080 50000
@@ -33,15 +39,6 @@ EXPOSE 8080 50000
 ### ENV VARIBALES:
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
-
-# - Jenkins start script
-COPY jenkins.sh /usr/local/bin/jenkins.sh
-# - Tini Init process
-# 	Again I'm doing this offline, see alternatives here:
-# 	https://github.com/krallin/tini
-COPY tini /bin/
-RUN chmod +x /bin/tini \
-	&& chown -R jenkins:jenkins /var/jenkins_home 
 
 ### EXPOSE VOLUME
 VOLUME /var/jenkins_home
