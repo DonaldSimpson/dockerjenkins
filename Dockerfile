@@ -31,6 +31,7 @@ RUN yum update -y \
 	&& rm -rf /var/cache/yum \
 	&& wget --no-check-certificate http://mirrors.jenkins-ci.org/war/latest/jenkins.war \
 	&& chmod +x /bin/tini \
+	&& chmod +x /usr/local/bin/jenkins.sh \
 	&& chown -R jenkins:jenkins /var/jenkins_home 
 
 ### EXPOSED PORTS - 8080 for web interface and 5000 for JNLP slave nodes:
