@@ -7,13 +7,13 @@ https://hub.docker.com/r/donaldsimpson/dockerjenkins/
 
 I'm using this to test dockerised jenkins swarm nodes
 
-With docker-latest installed and running you can build it like this:
+With docker installed and the git repo checked out to the current directory, you can build this image like this:
 
 docker build -t donaldsimpson/dockerjenkins .
 
-or pull it from docker hub like this:
+or pull the "latest" image from docker hub like this:
 
-docker pull donaldsimpson/dockerjenkins
+docker pull donaldsimpson/dockerjenkins:latest
 
 and run it with these args:
 
