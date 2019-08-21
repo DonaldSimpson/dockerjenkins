@@ -17,6 +17,7 @@ RUN yum update -y \
 	&& yum install -y java-1.8.0-openjdk-devel \
 	&& yum install -y git \
 	&& yum install -y python \
+	&& yum install -y docker \
 	&& yum install -y wget \
 	&& yum install -y which \
 	&& yum clean all \
